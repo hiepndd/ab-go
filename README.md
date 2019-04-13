@@ -24,3 +24,23 @@ Time spent: **2** hours spent in total
 - [x] Prints use information if wrong arguments provided
 - [x] Implements HTTP load and summarize it
 - [x] Concurrency must be implemented with goroutine.
+
+### Bonus
+
+- [ ] Extend input params with:
+  - [x] Timeout - Seconds to max. wait for each response
+  - [x] Timelimit - Maximum number of seconds to spend for benchmarking
+- [ ] Prints key metrics of summary, such:
+  - [ ] Server Hostname
+  - [ ] Server Port
+  - [ ] Document Path
+  - [ ] Document Length
+  - [ ] Concurrency Level
+  - [ ] Time taken for tests
+  - [] Complete requests
+  - [] Failed requests
+  - [ ] Total transferred
+  - [ ] Requests per second
+  - [ ] Time per request
+  - [ ] Time per request
+  - [ ] Transfer rate
