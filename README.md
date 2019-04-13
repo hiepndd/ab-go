@@ -2,6 +2,6 @@
 
 **ab-go excercise** is a Coderschool golang course prework
 
-Submitted by: **{{hiepndd}}**
+Submitted by: **{{ hiepndd }}**
 
-Time spent: **{{2}}** hours spent in total
+Time spent: **{{ 2 }}** hours spent in total
