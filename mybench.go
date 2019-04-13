@@ -11,9 +11,10 @@ import (
 )
 
 type responseInfo struct {
-	status   int
-	bytes    int64
-	duration time.Duration
+	status      int
+	bytes       int64
+	duration    time.Duration
+	timeRequest time.Duration
 }
 
 type summaryInfo struct {
@@ -24,25 +25,26 @@ type summaryInfo struct {
 func checkLink(link string, c chan responseInfo) {
 	start := time.Now()
 	res, err := http.Get(link)
+	timeRequest := time.Now().Sub(start)
 	if err != nil {
 		panic(err)
 	}
 	read, _ := io.Copy(ioutil.Discard, res.Body)
 	c <- responseInfo{
-		status:   res.StatusCode,
-		bytes:    read,
-		duration: time.Now().Sub(start),
+		status:      res.StatusCode,
+		bytes:       read,
+		duration:    time.Now().Sub(start),
+		timeRequest: timeRequest,
 	}
 }
 
 func main() {
 
-	fmt.Println("Hello from my app")
 	request := flag.Int64("n", 1, "number of requests")
 	concurrency := flag.Int64("c", 1, "number of requests to perform at once")
 	timeOut := flag.Int64("timeout", 30, "the time out wait for each response")
 	timeLimt := flag.Int64("timelimit", 30, "the time limit spend for benchmarking")
-	fmt.Println(request, concurrency)
+
 	flag.Parse()
 
 	if flag.NArg() == 0 || *request == 0 || *request < *concurrency {
@@ -55,7 +57,7 @@ func main() {
 	link := flag.Arg(0)
 	c := make(chan responseInfo)
 	summary := summaryInfo{}
-
+	begin := time.Now()
 	for i := int64(0); i < *concurrency; i++ {
 		summary.requested++
 		go checkLink(link, c)
@@ -73,6 +75,7 @@ func main() {
 
 		default:
 			summary.responded++
+
 			fmt.Println(response)
 		}
 
@@ -80,6 +83,11 @@ func main() {
 			break
 		}
 	}
+
+	end := time.Now().Sub(begin)
+
+	fmt.Println("Time taken for tests")
+	fmt.Println(end)
 
 	<-timerLimit.C
 

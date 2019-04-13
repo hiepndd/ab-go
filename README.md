@@ -34,13 +34,12 @@ Time spent: **2** hours spent in total
   - [ ] Server Hostname
   - [ ] Server Port
   - [ ] Document Path
-  - [ ] Document Length
+  - [] Document Length
   - [ ] Concurrency Level
-  - [ ] Time taken for tests
-  - [] Complete requests
-  - [] Failed requests
+  - [x] Time taken for tests
+  - [x] Complete requests
+  - [x] Failed requests (count request based on time out)
   - [ ] Total transferred
   - [ ] Requests per second
-  - [ ] Time per request
-  - [ ] Time per request
+  - [x] Time per request
   - [ ] Transfer rate
