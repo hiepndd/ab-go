@@ -12,6 +12,8 @@ Time spent: **2** hours spent in total
 -timeout 3 -timelimit 10  -n 9 -c 3   http://coderschool.vn/
 ```
 
+You can see based on the timelimit program automatically close
+
 ![](http://g.recordit.co/A3b23KcuB8.gif)
 
 ## Set of User Stories
